@@ -1,0 +1,10 @@
+[package]
+name = "steperb"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0"
+authors = ["Motivation Software Inc."]
+description = "A stepper motor control library for embedded systems"
+repository = "https://github.com/motivation-inc/steperb"
+
+[dependencies]
