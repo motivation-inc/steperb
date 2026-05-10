@@ -1,18 +1,16 @@
 use steperb::StepperController;
 
 fn main() {
-    // 1.8° per step, 90° max range, -90° min range, initialized at 15°
-    let mut stepper_motor = StepperController::new(1.8, 90.0, -90.0, 15.0);
-    stepper_motor
-        .set_desired_angle(45.0)
-        .expect("Error setting angle");
+    // 1.8° per step (200 steps per revolution), 90° max range, -90° min range, initialized at 15°
+    let mut controller = StepperController::new(200);
+    controller.set_desired_angle(45.0);
 
-    while stepper_motor.needs_movement() {
-        if stepper_motor.reversed_direction() {
+    while controller.needs_movement() {
+        if controller.is_reversed() {
             println!("Moving in opposite direction.");
         }
 
-        stepper_motor.step();
-        println!("{}", stepper_motor.current_angle());
+        controller.apply_step();
+        println!("{}", controller.current_steps());
     }
 }
